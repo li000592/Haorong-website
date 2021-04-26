@@ -4,11 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Home - Brand</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/pwa-icon.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/img/pwa-spalsh.png" />
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" />
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+      ;(function () {
+        emailjs.init("user_Tot1NFsaIjpE5ZxGMs9ns")
+      })()
+    </script>
+    <script type="text/javascript">
+      window.onload = function () {
+        document.getElementById("contactForm").addEventListener("submit", function (event) {
+          event.preventDefault()
+          // these IDs from the previous steps
+          emailjs.sendForm("service_dlb5zns", "template_0ohckku", this).then(
+            function () {
+              alert("SUCCESS!")
+            },
+            function (error) {
+              alert("FAILED...", error)
+            }
+          )
+        })
+      }
+    </script>
   </head>
 
   <body id="page-top">
@@ -53,7 +78,7 @@
         <hr class="star-light" />
         <h2 class="font-weight-light mb-0">Front-end Developer - Web Developer - Graphic Designer - UI/UX Designer</h2>
       </div>
-      <a class="d-inline-block" target="_blank" data-bss-hover-animate="pulse" href="https://haorong.hashnode.dev/"
+      <a class="d-inline-block" data-bss-hover-animate="pulse" href="https://haorong.hashnode.dev/" target="_blank"
         ><img
           src="assets/img/100daysOfCode.png"
           style="border-radius: 18px; text-shadow: 0px 0px; margin-top: 30px; width: 251px"
@@ -143,8 +168,18 @@
           </div>
         </div>
         <div class="text-center mt-4">
+<<<<<<< HEAD
           <a class="btn btn-outline-light btn-xl" role="button" href="#"
             ><i class="fa fa-download mr-2"></i><span>My Resume</span></a
+=======
+          <a
+            class="btn btn-outline-light btn-xl"
+            role="button"
+            id="download-btn"
+            href="./assets/img/Haorong Li_CV.pdf"
+            download
+            ><i class="fa fa-download mr-2"></i><span>Download Now!</span></a
+>>>>>>> de59cd16b6b4fc97fa1fa0ad16a36191faefb768
           >
         </div>
       </div>
@@ -159,29 +194,46 @@
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                   <label>Name</label
-                  ><input class="form-control" type="text" id="name" required="" placeholder="Name" /><small
-                    class="form-text text-danger help-block"
-                  ></small>
+                  ><input
+                    class="form-control"
+                    type="text"
+                    id="to_name"
+                    name="to_name"
+                    required=""
+                    placeholder="Name"
+                  /><small class="form-text text-danger help-block"></small>
                 </div>
               </div>
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                   <label>Email Address</label
-                  ><input class="form-control" type="email" id="email" required="" placeholder="Email Address" /><small
-                    class="form-text text-danger help-block"
-                  ></small>
+                  ><input
+                    class="form-control"
+                    type="email"
+                    id="from_email"
+                    name="from_email"
+                    required=""
+                    placeholder="Email Address"
+                  /><small class="form-text text-danger help-block"></small>
                 </div>
               </div>
               <div class="control-group"></div>
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls mb-5 pb-2">
-                  <textarea class="form-control" id="message" required="" placeholder="Message" rows="5"></textarea
+                  <textarea
+                    class="form-control"
+                    id="message"
+                    name="message"
+                    required=""
+                    placeholder="Message"
+                    rows="5"
+                  ></textarea
                   ><small class="form-text text-danger help-block"></small>
                 </div>
               </div>
               <div id="success"></div>
               <div class="form-group">
-                <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Send</button>
+                <button class="btn btn-primary btn-xl" type="submit">Send</button>
               </div>
             </form>
           </div>
