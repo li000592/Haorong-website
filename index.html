@@ -12,6 +12,28 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" />
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+      ;(function () {
+        emailjs.init("user_Tot1NFsaIjpE5ZxGMs9ns")
+      })()
+    </script>
+    <script type="text/javascript">
+      window.onload = function () {
+        document.getElementById("contactForm").addEventListener("submit", function (event) {
+          event.preventDefault()
+          // these IDs from the previous steps
+          emailjs.sendForm("service_dlb5zns", "template_0ohckku", this).then(
+            function () {
+              alert("SUCCESS!")
+            },
+            function (error) {
+              alert("FAILED...", error)
+            }
+          )
+        })
+      }
+    </script>
   </head>
 
   <body id="page-top">
@@ -149,7 +171,12 @@
           </div>
         </div>
         <div class="text-center mt-4">
-          <a class="btn btn-outline-light btn-xl" role="button" href="#"
+          <a
+            class="btn btn-outline-light btn-xl"
+            role="button"
+            id="download-btn"
+            href="./assets/img/Haorong Li_CV.pdf"
+            download
             ><i class="fa fa-download mr-2"></i><span>Download Now!</span></a
           >
         </div>
@@ -165,29 +192,46 @@
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                   <label>Name</label
-                  ><input class="form-control" type="text" id="name" required="" placeholder="Name" /><small
-                    class="form-text text-danger help-block"
-                  ></small>
+                  ><input
+                    class="form-control"
+                    type="text"
+                    id="to_name"
+                    name="to_name"
+                    required=""
+                    placeholder="Name"
+                  /><small class="form-text text-danger help-block"></small>
                 </div>
               </div>
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                   <label>Email Address</label
-                  ><input class="form-control" type="email" id="email" required="" placeholder="Email Address" /><small
-                    class="form-text text-danger help-block"
-                  ></small>
+                  ><input
+                    class="form-control"
+                    type="email"
+                    id="from_email"
+                    name="from_email"
+                    required=""
+                    placeholder="Email Address"
+                  /><small class="form-text text-danger help-block"></small>
                 </div>
               </div>
               <div class="control-group"></div>
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls mb-5 pb-2">
-                  <textarea class="form-control" id="message" required="" placeholder="Message" rows="5"></textarea
+                  <textarea
+                    class="form-control"
+                    id="message"
+                    name="message"
+                    required=""
+                    placeholder="Message"
+                    rows="5"
+                  ></textarea
                   ><small class="form-text text-danger help-block"></small>
                 </div>
               </div>
               <div id="success"></div>
               <div class="form-group">
-                <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Send</button>
+                <button class="btn btn-primary btn-xl" type="submit">Send</button>
               </div>
             </form>
           </div>
