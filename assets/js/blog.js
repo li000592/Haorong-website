@@ -67,7 +67,6 @@ const dateConverter = (date) => {
 }
 const updateBlogCard = (data) => {
   for (let index = 0; index < 3; index++) {
-    console.log(data[index])
     const blog = document.getElementById(`blog-${index + 1}`)
     blog.querySelector("img").src = data[index].coverImage
     blog.querySelector("h5").textContent = data[index].title
@@ -81,7 +80,6 @@ const updateBlogCard = (data) => {
     blog.querySelector("a").href = "https://haorong.hashnode.dev/" + data[index].slug
   }
 }
-console.log(window.ReactQuery)
 async function gql(query, variables = {}) {
   const data = await fetch(HASHNODE_API, {
     method: "POST",
