@@ -1,21 +1,23 @@
-const HASHNODE_API = "https://api.hashnode.com/"
-const AUTH = "b9b3a936-f112-4c56-9d89-5dd364769aa3"
+const HASHNODE_API = "/.netlify/functions/hashnode-proxy"
 
-const query = (page) => {
-  return `{
-        user(username: "haorong") {
-          publication {
-            posts(page: ${page}) {
+const query = () => {
+  return `query {
+      publication(host: "haorong.hashnode.dev") {
+        posts(first: 3) {
+          edges {
+            node {
               title
               brief
               slug
-              dateAdded
-              coverImage
-              popularity
+              publishedAt
+              coverImage {
+                url
+              }
             }
           }
         }
-      }`
+      }
+    }`
 }
 const dateConverter = (date) => {
   let month = date.slice(5, 7)
@@ -68,24 +70,23 @@ const dateConverter = (date) => {
 const updateBlogCard = (data) => {
   for (let index = 0; index < 3; index++) {
     const blog = document.getElementById(`blog-${index + 1}`)
-    blog.querySelector("img").src = data[index].coverImage
-    blog.querySelector("h5").textContent = data[index].title
-    if (data[index].brief.length > 120) {
-      blog.querySelectorAll("p")[1].textContent = data[index].brief.slice(0, 120) + "..."
+    blog.querySelector("img").src = data[index].node.coverImage.url
+    blog.querySelector("h5").textContent = data[index].node.title
+    if (data[index].node.brief.length > 120) {
+      blog.querySelectorAll("p")[1].textContent = data[index].node.brief.slice(0, 120) + "..."
     } else {
-      blog.querySelectorAll("p")[1].textContent = data[index].brief
+      blog.querySelectorAll("p")[1].textContent = data[index].node.brief
     }
 
-    blog.querySelectorAll("p")[0].textContent = dateConverter(data[index].dateAdded)
-    blog.querySelector("a").href = "https://haorong.hashnode.dev/" + data[index].slug
+    blog.querySelectorAll("p")[0].textContent = dateConverter(data[index].node.publishedAt)
+    blog.querySelector("a").href = "https://haorong.hashnode.dev/" + data[index].node.slug
   }
 }
 async function gql(query, variables = {}) {
   const data = await fetch(HASHNODE_API, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-      Authorization: AUTH,
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       query,
@@ -95,6 +96,6 @@ async function gql(query, variables = {}) {
   return data.json()
 }
 
-gql(query(0))
-  .then((response) => response.data.user.publication.posts)
+gql(query())
+  .then((response) => response.data.publication.posts.edges)
   .then((data) => updateBlogCard(data))
