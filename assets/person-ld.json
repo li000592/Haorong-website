@@ -1,0 +1,41 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Haorong Li",
+  "jobTitle": "Full Stack Developer",
+  "description": "Experienced full-stack developer specializing in JavaScript, React Native, and modern web technologies",
+  "url": "https://haorong.netlify.app",
+  "image": "https://haorong.netlify.app/assets/profile-photo.jpg",
+  "email": "your.email@example.com",
+  "telephone": "+1-XXX-XXX-XXXX",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ottawa",
+    "addressRegion": "Ontario",
+    "addressCountry": "Canada"
+  },
+  "sameAs": [
+    "https://github.com/li000592",
+    "https://linkedin.com/in/haorongli"
+  ],
+  "knowsAbout": [
+    "JavaScript",
+    "React Native",
+    "HTML5",
+    "CSS3",
+    "Node.js",
+    "Mobile Development",
+    "Web Development",
+    "Progressive Web Apps",
+    "API Development",
+    "Database Design"
+  ],
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Full Stack Developer",
+    "occupationLocation": {
+      "@type": "City",
+      "name": "Ottawa"
+    }
+  }
+}
