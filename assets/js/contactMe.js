@@ -23,7 +23,7 @@ window.onload = function () {
     }
 
     // these IDs from the previous steps
-    emailjs.sendForm("service_dlb5zns", "template_0ohckku", this).then(
+    emailjs.sendForm("service_uaok5lo", "template_0ohckku", this).then(
       function () {
         alert("SUCCESS!")
       },
